@@ -1,4 +1,4 @@
-package com.staffbook.staffbook;
+package com.staffbook.staffbook.model;
 
 import java.util.Objects;
 
