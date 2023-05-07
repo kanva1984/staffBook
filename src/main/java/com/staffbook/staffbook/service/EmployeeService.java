@@ -2,7 +2,7 @@ package com.staffbook.staffbook.service;
 
 import com.staffbook.staffbook.model.Employee;
 
-import java.util.List;
+import java.util.Map;
 
 public interface EmployeeService {
 
@@ -11,7 +11,7 @@ public interface EmployeeService {
 
     Employee findEmployee(String firstName, String lastName);
 
-    List<Employee> getAllEmployees();
+    Map<String, Employee> getAllEmployees();
 
 
 }

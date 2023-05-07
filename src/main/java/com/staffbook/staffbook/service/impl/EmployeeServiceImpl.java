@@ -7,65 +7,62 @@ import com.staffbook.staffbook.model.Employee;
 import com.staffbook.staffbook.service.EmployeeService;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 
 public class EmployeeServiceImpl implements EmployeeService {
     private final int EMPLOYEES_STORAGE_SIZE = 10;
-    private List<Employee> employees = new ArrayList<>(List.of(
-            new Employee("Ivanov", "Ivan"),
-            new Employee("Markov", "Andrey"),
-            new Employee("Petrov", "Pjotr"),
-            new Employee("Salikhov", "Timur"),
-            new Employee("Goncharov", "Ivan"),
-            new Employee("Chekhov", "Anton"),
-            new Employee("Zolotkova", "Alisa"),
-            new Employee("Salikhov", "Rodion"),
-            new Employee("Nikitina", "Pavla")
 
-    ));
+    private String getEmployeeKey(String firstName, String lastName) {
+        return firstName + lastName;
+    }
+
+    private Map<String, Employee> employees = new HashMap<>();
 
     @Override
     public Employee addEmployee(String firstName, String lastName) {
-        Employee employee = new Employee(firstName, lastName);
-        if (!employees.contains(employee)) {
+        String employeeKey = getEmployeeKey(firstName, lastName);
+        if (employees.containsKey(employeeKey)) {
             throw new EmployeeAlreadyAddedException("Такой сотрудник уже существует!");
         }
         if (employees.size() == EMPLOYEES_STORAGE_SIZE) {
             throw new EmployeeStorageIsFullException("Хранилище сотрудников переполнено!");
         }
-        employees.add(employee);
-        return employee;
+        employees.put(
+                employeeKey,
+                new Employee(firstName, lastName)
+        );
+        return employees.get(employeeKey);
     }
 
 
     @Override
     public void removeEmployee(String firstName, String lastName) {
-        Employee employee = new Employee(firstName, lastName);
-        if (employees.contains(employee)) {
+
+        String employeeKey = getEmployeeKey(firstName, lastName);
+
+        if (!employees.containsKey(employeeKey)) {
             throw new EmployeeNotFoundException("Нет такого сотрудника!");
         }
-        employees.remove(employee);
+        employees.remove(employeeKey);
     }
 
     @Override
     public Employee findEmployee(String firstName, String lastName) {
         Employee employee = new Employee(firstName, lastName);
-        if (employees.contains(employee)) {
-            throw new EmployeeNotFoundException("Нет такого сотрудника!");
-        }
-        for (Employee value : employees) {
-            if (value.equals(employee)) {
-                return value;
-            }
-        }
-        return null;
+
+        String employeeKey = getEmployeeKey(firstName, lastName);
+
+        employees.containsKey(employeeKey);
+
+        return employees.get(employeeKey);
+
     }
 
     @Override
-    public List<Employee> getAllEmployees() {
+    public Map<String, Employee> getAllEmployees() {
         return employees;
     }
 }
