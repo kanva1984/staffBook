@@ -32,9 +32,13 @@ public class StaffBookController {
     @GetMapping("/add")
     private Employee addEmployee(
             @RequestParam("firstName") String firstName,
-            @RequestParam("lastName") String lastName) {
-        return employeeService.addEmployee(firstName, lastName);
+            @RequestParam("lastName") String lastName,
+            @RequestParam("salary") Integer salary,
+            @RequestParam("departmentId") Integer department
+            ) {
+        return employeeService.addEmployee(firstName, lastName, salary, department);
     }
+
     @GetMapping("/remove")
     private void removeEmployee(
             @RequestParam("firstName") String firstName,

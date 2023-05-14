@@ -22,7 +22,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     private Map<String, Employee> employees = new HashMap<>();
 
     @Override
-    public Employee addEmployee(String firstName, String lastName) {
+    public Employee addEmployee(String firstName, String lastName, Integer salary, Integer department) {
         String employeeKey = getEmployeeKey(firstName, lastName);
         if (employees.containsKey(employeeKey)) {
             throw new EmployeeAlreadyAddedException("Такой сотрудник уже существует!");
