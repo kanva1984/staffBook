@@ -32,7 +32,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
         employees.put(
                 employeeKey,
-                new Employee(firstName, lastName)
+                new Employee(firstName, lastName, salary, department)
         );
         return employees.get(employeeKey);
     }
@@ -50,8 +50,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee findEmployee(String firstName, String lastName) {
-        Employee employee = new Employee(firstName, lastName);
+    public Employee findEmployee(String firstName, String lastName, Integer salary, Integer department) {
+        Employee employee;
+        employee = new Employee(firstName, lastName, salary, department);
 
         String employeeKey = getEmployeeKey(firstName, lastName);
 

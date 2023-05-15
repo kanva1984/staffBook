@@ -49,7 +49,9 @@ public class StaffBookController {
     @GetMapping("/find")
     private Employee findEmployee(
             @RequestParam("firstName") String firstName,
-            @RequestParam("lastName") String lastName) {
-        return employeeService.findEmployee(firstName, lastName);
+            @RequestParam("lastName") String lastName,
+    @RequestParam("salary") Integer salary,
+    @RequestParam("department") Integer department) {
+        return employeeService.findEmployee(firstName, lastName, salary,department);
     }
 }

@@ -8,7 +8,6 @@ public class Employee {
     private final Integer salary;
     private final Integer department;
 
-
     public String getFirstName() {
         return firstName;
     }
@@ -31,6 +30,8 @@ public class Employee {
         this.salary = salary;
         this.department = department;
     }
+
+
 
 
 
