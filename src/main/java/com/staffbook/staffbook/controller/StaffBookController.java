@@ -13,7 +13,7 @@ import java.util.Map;
 @RequestMapping("/employee")
 public class StaffBookController {
 
-    @GetMapping
+    @GetMapping("/employee")
     public String welcome() {
         return "Добро пожаловать в книгу сотрудников!";
     }
