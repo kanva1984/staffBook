@@ -15,6 +15,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     private final EmployeeService employeeService;
 
     public DepartmentServiceImpl(EmployeeService employeeService) {
+
         this.employeeService = employeeService;
     }
 
@@ -36,7 +37,6 @@ public class DepartmentServiceImpl implements DepartmentService {
                 .min(Comparator.comparingInt(Employee::getSalary))
                 .orElse(null);
     }
-
     @Override
     public Map<Integer, List<Employee>> getByDepartmentEmployee(Integer departmentId) {
         return employeeService.getAllEmployees().values().stream()

@@ -35,7 +35,7 @@ public class StaffBookController {
             @RequestParam("lastName") String lastName,
             @RequestParam("salary") Integer salary,
             @RequestParam("departmentId") Integer department
-            ) {
+    ) {
         return employeeService.addEmployee(firstName, lastName, salary, department);
     }
 
@@ -50,8 +50,11 @@ public class StaffBookController {
     private Employee findEmployee(
             @RequestParam("firstName") String firstName,
             @RequestParam("lastName") String lastName,
-    @RequestParam("salary") Integer salary,
-    @RequestParam("department") Integer department) {
-        return employeeService.findEmployee(firstName, lastName, salary,department);
+            @RequestParam("salary") Integer salary,
+            @RequestParam("department") Integer department) {
+        return employeeService.findEmployee(firstName, lastName, salary, department);
     }
+
+
+
 }

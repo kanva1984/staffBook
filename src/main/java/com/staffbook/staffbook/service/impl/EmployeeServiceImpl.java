@@ -16,6 +16,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     private final int EMPLOYEES_STORAGE_SIZE = 10;
 
     private String getEmployeeKey(String firstName, String lastName) {
+
         return firstName + lastName;
     }
 
